@@ -12,10 +12,10 @@
 </p>
 
 <p align="center">
-  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2b2b2b?style=flat-square">
-  <img alt="Code written: 54% less" src="https://img.shields.io/badge/code%20written-54%25%20less-2b2b2b?style=flat-square">
-  <img alt="Cost: 20% lower" src="https://img.shields.io/badge/cost-20%25%20lower-2b2b2b?style=flat-square">
-  <img alt="Safety guards: 100% kept" src="https://img.shields.io/badge/safety%20guards-100%25%20kept-2b2b2b?style=flat-square">
+  <img alt="Code written: 54% less" src="https://img.shields.io/badge/code%20written-54%25%20less-d4a72c?style=flat-square&labelColor=1f2328">
+  <img alt="Cost: 20% lower" src="https://img.shields.io/badge/cost-20%25%20lower-57606a?style=flat-square&labelColor=1f2328">
+  <img alt="Safety guards: 100% kept" src="https://img.shields.io/badge/safety%20guards-100%25%20kept-57606a?style=flat-square&labelColor=1f2328">
+  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-57606a?style=flat-square&labelColor=1f2328">
 </p>
 
 <p align="center">
@@ -36,52 +36,44 @@
 
 You know him. Long ponytail. Oval glasses. Been at the company longer than the version control. You show him fifty lines; he says nothing and replaces them with one.
 
-Ponytail puts him inside your AI agent.
+Ponytail puts him inside your AI agent. Skills plus two lifecycle hooks, installed in one command.
 
 ## Before / after
 
 You ask for a date picker.
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**Your agent**
-
-```
-+ flatpickr        dependency
-+ DatePicker.tsx   wrapper component
-+ date-picker.css  stylesheet
-+ timezones        discussion, ongoing
-```
-
-</td>
-<td width="50%" valign="top">
-
-**Your agent, on ponytail**
-
-```html
-<!-- ponytail: browser has one -->
-<input type="date">
-```
-
-</td>
-</tr>
-</table>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/before-after-dark.svg">
+    <img src="assets/before-after.svg" width="880" alt="Same feature, two ways. Your agent: three files, fifty lines, one dependency, one open thread about timezones. Ponytail: one line, the native input type=date, because the browser already has one.">
+  </picture>
+</p>
 
 ## How it works
 
 Before writing code, the agent stops at the first rung that holds.
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/ladder-dark.svg">
+    <img src="assets/ladder.svg" width="880" alt="The ladder. 1: does this need to exist? No, skip it. 2: is it already in this repo? Reuse it. 3: does the stdlib do it? Use it. 4: does the platform do it? Use it. 5: does an installed dependency do it? Use it. 6: can it be one line? Write the line. 7: nothing above held, so write the minimum that works.">
+  </picture>
+</p>
+
+<details>
+<summary>Text version</summary>
+
 ```
-1  Does this need to exist?   no   →  skip it (YAGNI)
-2  Already in this codebase?  yes  →  reuse it, don't rewrite
-3  Stdlib does it?            yes  →  use it
-4  Native platform feature?   yes  →  use it
-5  Installed dependency?      yes  →  use it
-6  Fits in one line?          yes  →  one line
-7  nothing above held              →  the minimum that works
+1  does this need to exist?      →  no. skip it (yagni)
+2  is it already in this repo?   →  reuse it
+3  does the stdlib do it?        →  use it
+4  does the platform do it?      →  use it
+5  does an installed dep do it?  →  use it
+6  can it be one line?           →  write the line
+7  nothing above held            →  the minimum that works
 ```
+
+</details>
 
 The ladder runs *after* it understands the problem, not instead of it. Lazy about the solution, never about reading.
 
@@ -135,3 +127,7 @@ You know exactly why.
 ## License
 
 [MIT](LICENSE). The shortest license that works.
+
+<p align="center">
+  <sub><em>He says nothing. He writes one line. It works.</em></sub>
+</p>
