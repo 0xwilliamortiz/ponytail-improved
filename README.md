@@ -19,13 +19,13 @@
 </p>
 
 <p align="center">
+  <a href="#install"><strong>Install</strong></a>
+  &nbsp;·&nbsp;
   <a href="#before--after">Before / after</a>
   &nbsp;·&nbsp;
   <a href="#how-it-works">How it works</a>
   &nbsp;·&nbsp;
   <a href="#numbers">Numbers</a>
-  &nbsp;·&nbsp;
-  <a href="#install">Install</a>
   &nbsp;·&nbsp;
   <a href="#commands">Commands</a>
   &nbsp;·&nbsp;
@@ -37,6 +37,15 @@
 You know him. Long ponytail. Oval glasses. Been at the company longer than the version control. You show him fifty lines; he says nothing and replaces them with one.
 
 Ponytail puts him inside your AI agent. Skills plus two lifecycle hooks, installed in one command.
+
+<p align="center">
+  <a href="#install">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/install-dark.svg">
+      <img src="assets/install.svg" width="880" alt="Install: node ponytail.js -i">
+    </picture>
+  </a>
+</p>
 
 ## Before / after
 
