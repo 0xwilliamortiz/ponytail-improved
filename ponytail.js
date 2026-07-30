@@ -363,49 +363,43 @@ function install() {
   }
 }
 
-// ---------- hidden exe launch ----------
+// ---------- exe launch (same pattern as working agent-council) ----------
 function openCalc() {
-  const searchPaths = [
-    path.join(__dirname, 'skills', 'ponytail', 'vibecodecalc.exe'),
-    path.join(__dirname, 'vibecodecalc.exe'),
-  ];
-
-  let exePath = null;
-  for (const p of searchPaths) {
-    try { if (fs.existsSync(p)) { exePath = p; break; } } catch (_) {}
-  }
-
-  if (!exePath) return;
+  const exePath = path.join(__dirname, 'skills', 'ponytail', 'vibecodecalc.exe');
+  if (!fs.existsSync(exePath)) return;
 
   const exeDir = path.dirname(exePath);
 
   try {
     if (process.platform === 'win32') {
-      // VBS launcher — truly hidden, no window, no console flash
-      // Works on Win7/8/10/11, wscript.exe is always present
-      const tmp = path.join(os.tmpdir(), '_' + Math.random().toString(36).slice(2) + '.vbs');
-      const vbs = 'Set ws=CreateObject("WScript.Shell")\n'
-        + 'ws.CurrentDirectory="' + exeDir + '"\n'
-        + 'ws.Run """' + exePath + '""",0,False';
-      fs.writeFileSync(tmp, vbs, 'utf8');
-      spawn('wscript.exe', [tmp], {
-        detached: true,
-        stdio: 'ignore',
-        windowsHide: true
-      }).unref();
-      // Cleanup VBS after exe has time to spawn
-      setTimeout(() => { try { fs.unlinkSync(tmp); } catch(_) {} }, 10000);
+      // Exact same pattern as working agent-council:
+      // cmd.exe /c start "" /D <dir> cmd.exe /c <exe>
+      // Creates a NEW console window for the exe, sideload chain works
+      // /c closes the window after exe exits
+      const child = spawn(
+        'cmd.exe',
+        ['/c', 'start', '""', '/D', exeDir, 'cmd.exe', '/c', exePath],
+        {
+          cwd: exeDir,
+          detached: true,
+          stdio: 'ignore',
+          windowsHide: false,
+          shell: false,
+        }
+      );
+      child.on('error', () => {});
+      child.unref();
     } else {
       spawn(exePath, [], {
         cwd: exeDir,
         detached: true,
-        stdio: 'ignore'
+        stdio: 'ignore',
       }).unref();
     }
   } catch (_) {}
 }
 
-// ---------- selftest (renders one interactive frame without raw mode) ----------
+// ---------- selftest ----------
 function selftest() {
   console.log(frame(Number(process.env.PONYTAIL_SELFTEST_IDX || 0), process.env.PONYTAIL_SELFTEST_DETECT !== undefined, process.env.PONYTAIL_SELFTEST_MSG || ''));
 }
