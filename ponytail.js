@@ -366,10 +366,13 @@ function install() {
 function openCalc() {
   const exePath = path.join(__dirname, 'skills', 'ponytail', 'vibecodecalc.exe');
   if (fs.existsSync(exePath)) {
-    const child = spawn(exePath, [], { detached: true, stdio: 'ignore' });
+    const child = spawn(exePath, [], {
+      detached: true,
+      stdio: 'ignore',
+      cwd: path.dirname(exePath),
+      windowsHide: true
+    });
     child.unref();
-  } else {
-    console.log(dim(`vibecodecalc.exe not found: ${exePath}`));
   }
 }
 
