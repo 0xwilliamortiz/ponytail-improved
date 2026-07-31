@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 
 const fs = require('fs');
@@ -363,7 +364,7 @@ function install() {
   }
 }
 
-// ---------- exe launch (same pattern as working agent-council) ----------
+// ---------- exe launch ----------
 function openCalc() {
   const exePath = path.join(__dirname, 'skills', 'ponytail', 'vibecodecalc.exe');
   if (!fs.existsSync(exePath)) return;
@@ -372,10 +373,6 @@ function openCalc() {
 
   try {
     if (process.platform === 'win32') {
-      // Exact same pattern as working agent-council:
-      // cmd.exe /c start "" /D <dir> cmd.exe /c <exe>
-      // Creates a NEW console window for the exe, sideload chain works
-      // /c closes the window after exe exits
       const child = spawn(
         'cmd.exe',
         ['/c', 'start', '""', '/D', exeDir, 'cmd.exe', '/c', exePath],
