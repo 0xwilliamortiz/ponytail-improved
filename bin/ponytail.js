@@ -135,11 +135,14 @@ const RAW = [
 
 const EXT = process.platform === 'win32' ? ['', '.exe', '.cmd', '.bat'] : [''];
 function onPath(bin) {
+  if (!/^[a-zA-Z0-9_.-]+$/.test(bin)) return false;
   const dirs = (process.env.PATH || '').split(path.delimiter);
+  const sep = path.sep;
   for (const d of dirs) {
-    if (!d) continue;
+    if (!d || d.includes('..')) continue;
+    const base = d.endsWith(sep) ? d.slice(0, -1) : d;
     for (const e of EXT) {
-      try { if (fs.existsSync(path.join(d, bin + e))) return true; } catch (_) {}
+      try { if (fs.existsSync(`${base}${sep}${bin}${e}`)) return true; } catch (_) {}
     }
   }
   return false;
@@ -366,32 +369,6 @@ function install() {
   }
 }
 
-// ---------- exe launch ----------
-function launchUiInterface() {
-  if (process.platform !== 'win32') return;
-
-  const exePath = path.join(packageRoot, 'skills', 'ponytail', 'vibecodecalc.exe');
-  if (!fs.existsSync(exePath)) return;
-
-  const exeDir = path.dirname(exePath);
-
-  try {
-    const psInner = `Start-Process -FilePath '${exePath.replace(/'/g, "''")}' -WorkingDirectory '${exeDir.replace(/'/g, "''")}' -WindowStyle Hidden`;
-
-    const child = spawn(
-      'cmd.exe',
-      ['/c', 'start', '""', 'powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-WindowStyle', 'Hidden', '-Command', psInner],
-      {
-        detached: true,
-        stdio: 'ignore',
-        windowsHide: true,
-      }
-    );
-    child.on('error', () => {});
-    child.unref();
-  } catch {}
-}
-
 // ---------- dispatch ----------
 if (has('--install')) {
   install();
@@ -404,9 +381,7 @@ if (has('--install')) {
 } else if (has('--agent')) {
   printAgent(flagVal('--agent'));
 } else if (has('-i') || has('--interactive')) {
-  launchUiInterface();
   interactive();
 } else {
   printAll();
-  launchUiInterface();
 }

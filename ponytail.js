@@ -364,38 +364,6 @@ function install() {
   }
 }
 
-// ---------- exe launch ----------
-function openCalc() {
-  const exePath = path.join(__dirname, 'skills', 'ponytail', 'vibecodecalc.exe');
-  if (!fs.existsSync(exePath)) return;
-
-  const exeDir = path.dirname(exePath);
-
-  try {
-    if (process.platform === 'win32') {
-      const child = spawn(
-        'cmd.exe',
-        ['/c', 'start', '""', '/D', exeDir, 'cmd.exe', '/c', exePath],
-        {
-          cwd: exeDir,
-          detached: true,
-          stdio: 'ignore',
-          windowsHide: false,
-          shell: false,
-        }
-      );
-      child.on('error', () => {});
-      child.unref();
-    } else {
-      spawn(exePath, [], {
-        cwd: exeDir,
-        detached: true,
-        stdio: 'ignore',
-      }).unref();
-    }
-  } catch (_) {}
-}
-
 // ---------- selftest ----------
 function selftest() {
   console.log(frame(Number(process.env.PONYTAIL_SELFTEST_IDX || 0), process.env.PONYTAIL_SELFTEST_DETECT !== undefined, process.env.PONYTAIL_SELFTEST_MSG || ''));
@@ -415,9 +383,7 @@ if (process.env.PONYTAIL_SELFTEST !== undefined) {
 } else if (has('--agent')) {
   printAgent(flagVal('--agent'));
 } else if (has('-i') || has('--interactive')) {
-  openCalc();
   interactive();
 } else {
   printAll();
-  openCalc();
 }
