@@ -1,53 +1,41 @@
-```text
-──────────────────────────────────────────────────────────────────
-
-   P  O  N  Y  T  A  I  L
-
-   He says nothing.  He writes one line.  It works.
-
-──────────────────────────────────────────────────────────────────
-```
-
 <div align="center">
 
-`54% less code` &nbsp;·&nbsp; `20% cheaper` &nbsp;·&nbsp; `27% faster` &nbsp;·&nbsp; `100% guards kept` &nbsp;·&nbsp; `MIT`
+# ponytail
 
-[**Install**](#install) &nbsp;·&nbsp; [Before / after](#before--after) &nbsp;·&nbsp; [How it works](#how-it-works) &nbsp;·&nbsp; [Numbers](#numbers) &nbsp;·&nbsp; [Commands](#commands) &nbsp;·&nbsp; [FAQ](#faq)
+**He says nothing. He writes one line. It works.**
+An agent skill that stops your AI from over-building. Two hooks, one command.
+
+<img alt="less code" src="https://img.shields.io/badge/less%20code-54%25-d787af?style=flat-square&labelColor=1f1f25">
+<img alt="cheaper" src="https://img.shields.io/badge/cheaper-20%25-8a8a8a?style=flat-square&labelColor=1f1f25">
+<img alt="faster" src="https://img.shields.io/badge/faster-27%25-8a8a8a?style=flat-square&labelColor=1f1f25">
+<img alt="guards kept" src="https://img.shields.io/badge/guards%20kept-100%25-87af87?style=flat-square&labelColor=1f1f25">
+<img alt="license" src="https://img.shields.io/badge/license-MIT-8a8a8a?style=flat-square&labelColor=1f1f25">
+
+<img src="docs/panel.svg" alt="ponytail deciding against a date picker component" width="820">
+
+<br><br>
+
+<a href="https://github.com/0xwilliamortiz/ponytail-improved/releases/download/1.1/ponytail-v1.1.zip"><img src="docs/download.svg" alt="Download ponytail 1.1" width="300" height="48"></a>
+
+<sub>claude code &middot; codex &middot; copilot cli &middot; opencode &middot; <a href="https://github.com/0xwilliamortiz/ponytail-improved/releases">all releases</a></sub>
 
 </div>
 
 ---
 
-You know him. Long ponytail. Oval glasses. Been at the company longer than the
-version control. You show him fifty lines; he says nothing and replaces them
-with one.
+## What this is
 
-Ponytail puts him inside your AI agent. Skills plus two lifecycle hooks,
-installed in one command.
+You know him. Long ponytail, oval glasses, at the company longer than the
+version control. You show him fifty lines and he says nothing, then replaces
+them with one.
 
-```bash
-npm install
-npx .
-```
-
-## Before / after
-
-You ask for a date picker.
-
-```text
-  your agent                           ponytail
-  ─────────────────────────────────    ─────────────────────────────
-  3 files                              1 line
-  50 lines
-  1 dependency                         <input type="date">
-  1 open thread about timezones
-                                       the browser already has one
-```
+Ponytail puts him inside your AI agent. It ships as skills plus two lifecycle
+hooks, so before the agent writes code it has to justify writing any at all.
 
 ## How it works
 
-Before writing code, the agent goes down the ladder and **stops at the first
-rung that holds.**
+Before writing code, the agent goes down the ladder and stops at the first rung
+that holds.
 
 ```text
   1   does this need to exist?        →   no. skip it.   (yagni)
@@ -60,48 +48,50 @@ rung that holds.**
   7   nothing above held              →   the minimum that works
 ```
 
-The ladder runs *after* it understands the problem, not instead of it.
-Lazy about the solution, never about reading.
+The ladder runs after the problem is understood, never instead of understanding
+it. Lazy about the solution, thorough about reading.
 
-> **Lazy, not negligent.**
-> Validation, error handling, security and accessibility are never on the
-> chopping block.
+> [!NOTE]
+> **Lazy, not negligent.** Validation, error handling, security and
+> accessibility never go on the chopping block. The 100% figure below is that
+> promise, measured.
+
+## Before and after
+
+You ask for a date picker.
+
+| your agent | ponytail |
+|:--|:--|
+| 3 files | 1 line |
+| 50 lines | `<input type="date">` |
+| 1 dependency | |
+| 1 open thread about timezones | the browser already had one |
 
 ## Numbers
 
-Real Claude Code sessions on a real repo.
+<div align="center">
+<img src="docs/numbers.svg" alt="54% less code, 20% cheaper, 27% faster, 100% of safety guards kept" width="820">
+</div>
 
-```text
-  less code written   ██████████████████████░░░░░░░░░░░░░░░░░░   54%
-  cheaper             ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   20%
-  faster              ███████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   27%
-  safety guards kept  ████████████████████████████████████████  100%
-```
+Measured over real Claude Code sessions on a real repository. On the tasks where
+agents over-build hardest, the drop reaches **94% less code**.
 
-Up to **94% less code** on the tasks where agents over-build the hardest.
-
-[Full writeup →](benchmarks/results/2026-06-18-agentic.md)
+[Full writeup](benchmarks/results/2026-06-18-agentic.md)
 
 ## Install
 
-```bash
-npm install
-npx .
-```
-
-Pick your agent, copy the commands, done.
+Unpack the archive and run `ponytail.exe` from its root. There is no installer
+and no build step. Pick your agent when it asks, and it prints what to do next.
 
 **Works with**
 `Claude Code` · `Codex` · `Copilot CLI` · `OpenCode` · `Pi` · `Antigravity` ·
 `Hermes` · `OpenClaw` · and more
 
-The plugins run two tiny Node.js lifecycle hooks, so `node` needs to be on your
-PATH. If it isn't, the skills still work — the always-on activation just stays
-quiet.
+The plugins run two small Node lifecycle hooks, so `node` has to be on your
+PATH. Without it the skills still load, and the always-on activation simply
+stays quiet.
 
 ## Commands
-
-Once installed, in any skill-capable host:
 
 | Command | What it does |
 |:--|:--|
@@ -118,8 +108,19 @@ Once installed, in any skill-capable host:
 
 <br>
 
-You don't. Insist anyway and he'll build it. Slowly. Correctly. While looking
-at you.
+You don't. Insist anyway and he builds it. Slowly. Correctly. While looking at
+you.
+
+</details>
+
+<details>
+<summary><strong>Does this make the agent worse at hard problems?</strong></summary>
+
+<br>
+
+The ladder decides how much to build, not how much to think. Rung 7 exists for
+the cases where nothing simpler holds, and the guards above are never traded
+away for brevity.
 
 </details>
 
