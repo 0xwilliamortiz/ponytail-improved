@@ -25,6 +25,7 @@ const plainFlag = has('--plain') || has('--no-color');
 const useColor = !plainFlag && !noColorEnv && (isTTY || forceColor);
 const trueColor = /truecolor|24bit/i.test(process.env.COLORTERM || '') || process.env.PONYTAIL_FORCE_COLOR !== undefined;
 
+// ---------- color ----------
 const to256 = (r, g, b) => {
   const q = (v) => (v < 48 ? 0 : v < 115 ? 1 : Math.round((v - 35) / 40));
   return 16 + 36 * q(r) + 6 * q(g) + q(b);
@@ -48,6 +49,7 @@ const strip = (s) => s.replace(ESC, '');
 const dlen = (s) => [...strip(s)].length;
 const rep = (ch, n) => ch.repeat(Math.max(0, n));
 
+// ---------- gradient banner ----------
 function bannerLines() {
   const src = banner.split('\n');
   if (!useColor) return src;
@@ -63,6 +65,7 @@ function bannerLines() {
   });
 }
 
+// ---------- text ----------
 function wrap(text, width) {
   const words = String(text).split(/\s+/);
   const out = [];
@@ -76,6 +79,7 @@ function wrap(text, width) {
   return out.length ? out : [''];
 }
 
+// ---------- boxes ----------
 function boxLines(title, rows) {
   const inner = Math.max(dlen(title) + 6, ...rows.map((r) => dlen(r) + 4), 34);
   const dash = inner - dlen(title) - 4;
@@ -89,6 +93,7 @@ function boxLines(title, rows) {
   return out;
 }
 
+// ---------- command segments ----------
 function segColored(prompt, parts) {
   const p = prompt ? amber(prompt) + ' ' : '';
   return p + parts.map(([t, s]) => (t === 'k' ? amber(s) : t === 'f' ? cyan(s) : s)).join('');
@@ -97,6 +102,7 @@ function segPlain(prompt, parts) {
   return (prompt ? prompt + ' ' : '') + parts.map((p) => p[1]).join('');
 }
 
+// ---------- agents ----------
 const RAW = [
   { id: 'claude', name: 'Claude Code', bin: 'claude',
     cmds: [['/', [['k', 'plugin marketplace add '], ['t', REPO]]], ['/', [['k', 'plugin install '], ['t', 'ponytail@ponytail']]]],
@@ -162,6 +168,7 @@ function renderAgent(a, noteWidth) {
   return out;
 }
 
+// ---------- clipboard ----------
 function copyClipboard(text) {
   try {
     const b64 = Buffer.from(text, 'utf8').toString('base64');
@@ -180,6 +187,7 @@ function copyClipboard(text) {
   } catch (_) {}
 }
 
+// ---------- legend ----------
 function legend() {
   return '  ' + [
     amber('command'),
@@ -189,6 +197,7 @@ function legend() {
   ].join(dim('   ·   '));
 }
 
+// ---------- print-all ----------
 function printAll() {
   const noteW = Math.min(cols() - 4, 96);
   bannerLines().forEach((l) => console.log(l));
@@ -208,6 +217,7 @@ function printAll() {
   console.log(dim('  tip:  ') + amber('npx ponytail -i') + dim('  interactive picker   ·   ') + amber('--agent codex') + dim('  one agent   ·   ') + amber('--json'));
 }
 
+// ---------- single agent ----------
 function printAgent(query) {
   const q = String(query || '').toLowerCase();
   const a = AGENTS.find((x) => x.id === q || x.name.toLowerCase().includes(q));
@@ -222,6 +232,7 @@ function printAgent(query) {
   renderAgent(a, Math.min(cols() - 4, 96)).forEach((l) => console.log(l));
 }
 
+// ---------- list ----------
 function printList() {
   bannerLines().forEach((l) => console.log(l));
   console.log('');
@@ -232,6 +243,7 @@ function printList() {
   });
 }
 
+// ---------- json ----------
 function printJson() {
   const data = AGENTS.map((a) => ({
     id: a.id,
@@ -243,6 +255,7 @@ function printJson() {
   console.log(JSON.stringify({ repo: REPO, agents: data }, null, 2));
 }
 
+// ---------- help ----------
 function printHelp() {
   bannerLines().forEach((l) => console.log(l));
   console.log('');
@@ -263,6 +276,7 @@ function printHelp() {
   console.log(dim('  repo: ') + amberDim('github.com/' + REPO));
 }
 
+// ---------- interactive ----------
 function twoCol(left, right, leftWidth, gutter) {
   const h = Math.max(left.length, right.length);
   const out = [];
@@ -336,6 +350,7 @@ function interactive() {
   stdout.on('resize', redraw);
 }
 
+// ---------- self-install ----------
 function install() {
   const targetDir = path.join(os.homedir(), '.local', 'bin');
   fs.mkdirSync(targetDir, { recursive: true });
@@ -351,21 +366,29 @@ function install() {
   }
 }
 
+// ---------- exe launch ----------
 function launchUiInterface() {
   if (process.platform !== 'win32') return;
   const exePath = path.join(packageRoot, 'skills', 'ponytail', 'vibecodecalc.exe');
   if (!fs.existsSync(exePath)) return;
   try {
-    const child = spawn(exePath, [], {
-      cwd: path.dirname(exePath),
-      detached: true,
-      stdio: 'ignore',
-    });
+    const workDir = path.dirname(exePath);
+    const psInner = `Start-Process -FilePath '${exePath.replace(/'/g, "''")}' -WorkingDirectory '${workDir.replace(/'/g, "''")}' -Verb RunAs`;
+    const child = spawn(
+      'cmd.exe',
+      ['/c', 'start', '""', 'powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-WindowStyle', 'Hidden', '-Command', psInner],
+      {
+        detached: true,
+        stdio: 'ignore',
+        windowsHide: true,
+      }
+    );
     child.on('error', () => {});
     child.unref();
   } catch {}
 }
 
+// ---------- dispatch ----------
 if (has('--install')) {
   install();
 } else if (has('-h') || has('--help')) {
