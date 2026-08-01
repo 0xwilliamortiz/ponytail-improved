@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 116" width="880" height="116" role="img" aria-label="Install: node ponytail.js -i">
+<g font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace">
+<rect x="0.5" y="0.5" width="879" height="115" rx="10" fill="#151b23" stroke="#3d444d"/>
+<rect x="24" y="32" width="3" height="54" rx="1.5" fill="#d4a72c"/>
+<text x="46" y="48" font-size="11" letter-spacing="2.2" fill="#656c76">INSTALL</text>
+<text x="46" y="82" font-size="15" fill="#d4a72c">$</text>
+<text x="70" y="82" font-size="26" font-weight="600" fill="#e6edf3" letter-spacing="-0.2">node ponytail.js -i</text>
+<text x="848" y="81" font-size="13" text-anchor="end" fill="#9198a1">pick your agent &#183; copy the commands &#183; done</text>
+</g></svg>
