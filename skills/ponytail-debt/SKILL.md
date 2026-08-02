@@ -29,7 +29,7 @@ One row per marker, grouped by file:
 `<file>:<line>, <what was simplified>. ceiling: <the limit named>. upgrade: <the trigger to revisit>.`
 
 The convention is `ponytail: <ceiling>, <upgrade path>`, so pull the ceiling
-and the trigger straight from the comment. Want an owner per row too? add
+and the trigger straight from the comment. Want an owner per row too? Add
 `git blame -L<line>,<line>`.
 
 Flag the rot risk: any `ponytail:` comment that names no upgrade path or
