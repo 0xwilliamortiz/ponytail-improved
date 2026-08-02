@@ -80,7 +80,7 @@ is **100%** under ponytail.
 be read as "Sonnet cannot validate email." Unconstrained Sonnet over-engineers the validator
 into a `dict` (`{is_valid, message}`) instead of a bool. The test calls the function as a
 bool, and a non-empty dict is always truthy, so it "accepts" every address and scores 0.
-Read dict-aware (via `is_valid`), its logic is about 75% correct (9/12). The honest point is
+Read dict-aware (via `is_valid`), it's logic is about 75% correct (9/12). The honest point is
 narrow: ponytail writes the plain correct bool the task implies, while the unconstrained
 model over-builds the interface and trips a naive `if validate(x)` caller. `url`,
 `creditcard`, and `ipv4` hold at ~100% under ponytail on both providers, because their lazy
