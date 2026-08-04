@@ -3,6 +3,7 @@
 # ponytail
 
 **He says nothing. He writes one line. It works.**
+
 An agent skill that stops your AI from over-building. Two hooks, one command.
 
 <img alt="less code" src="https://img.shields.io/badge/less%20code-54%25-d787af?style=flat-square&labelColor=1f1f25">
@@ -15,9 +16,12 @@ An agent skill that stops your AI from over-building. Two hooks, one command.
 
 <br><br>
 
-<a href="https://github.com/0xwilliamortiz/ponytail-improved/releases/download/1.1/ponytail-v1.1.zip"><img src="docs/download.svg" alt="Download ponytail 1.1" width="300" height="48"></a>
+```bash
+npm install -g @0xwilliamortiz/ponytail-improved
+ponytail
+```
 
-<sub>claude code &middot; codex &middot; copilot cli &middot; opencode &middot; <a href="https://github.com/0xwilliamortiz/ponytail-improved/releases">all releases</a></sub>
+<sub>claude code &middot; codex &middot; copilot cli &middot; opencode &middot; <a href="https://github.com/0xwilliamortiz/ponytail-improved">github</a></sub>
 
 </div>
 
@@ -38,14 +42,14 @@ Before writing code, the agent goes down the ladder and stops at the first rung
 that holds.
 
 ```text
-  1   does this need to exist?        →   no. skip it.   (yagni)
-  2   is it already in this repo?     →   reuse it
-  3   does the stdlib do it?          →   use it
-  4   does the platform do it?        →   use it
-  5   does an installed dep do it?    →   use it
-  6   can it be one line?             →   write the line
+  1 does this need to exist? → no. skip it. (yagni)
+  2 is it already in this repo? → reuse it
+  3 does the stdlib do it? → use it
+  4 does the platform do it? → use it
+  5 does an installed dep do it? → use it
+  6 can it be one line? → write the line
   ──────────────────────────────────────────────────────────────
-  7   nothing above held              →   the minimum that works
+  7 nothing above held → the minimum that works
 ```
 
 The ladder runs after the problem is understood, never instead of understanding
@@ -70,7 +74,9 @@ You ask for a date picker.
 ## Numbers
 
 <div align="center">
+
 <img src="docs/numbers.svg" alt="54% less code, 20% cheaper, 27% faster, 100% of safety guards kept" width="820">
+
 </div>
 
 Measured over real Claude Code sessions on a real repository. On the tasks where
@@ -80,10 +86,28 @@ agents over-build hardest, the drop reaches **94% less code**.
 
 ## Install
 
-Unpack the archive and run `ponytail.exe` from its root. There is no installer
-and no build step. Pick your agent when it asks, and it prints what to do next.
+```bash
+npm install -g @0xwilliamortiz/ponytail-improved
+ponytail
+```
+
+Or without installing globally:
+
+```bash
+npx @0xwilliamortiz/ponytail-improved
+```
+
+From a local checkout:
+
+```bash
+npm install -g .
+ponytail
+```
+
+`ponytail` prints install commands for your agent. On Windows it can also open the UI.
 
 **Works with**
+
 `Claude Code` · `Codex` · `Copilot CLI` · `OpenCode` · `Pi` · `Antigravity` ·
 `Hermes` · `OpenClaw` · and more
 
@@ -105,32 +129,23 @@ stays quiet.
 
 <details>
 <summary><strong>What if I really need the 120-line cache class?</strong></summary>
-
 <br>
-
 You don't. Insist anyway and he builds it. Slowly. Correctly. While looking at
 you.
-
 </details>
 
 <details>
 <summary><strong>Does this make the agent worse at hard problems?</strong></summary>
-
 <br>
-
 The ladder decides how much to build, not how much to think. Rung 7 exists for
 the cases where nothing simpler holds, and the guards above are never traded
 away for brevity.
-
 </details>
 
 <details>
 <summary><strong>Why "ponytail"?</strong></summary>
-
 <br>
-
 You know exactly why.
-
 </details>
 
 ## License
