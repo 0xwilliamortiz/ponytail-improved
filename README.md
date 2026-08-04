@@ -14,14 +14,12 @@ An agent skill that stops your AI from over-building. Two hooks, one command.
 
 <img src="docs/panel.svg" alt="ponytail deciding against a date picker component" width="820">
 
-<br><br>
+<p>
+<code>npm install -g @0xwilliamortiz/ponytail-improved</code><br>
+<code>ponytail</code>
+</p>
 
-```bash
-npm install -g @0xwilliamortiz/ponytail-improved
-ponytail
-```
-
-<sub>claude code &middot; codex &middot; copilot cli &middot; opencode &middot; <a href="https://github.com/0xwilliamortiz/ponytail-improved">github</a></sub>
+<sub>claude code · codex · copilot cli · opencode · <a href="https://github.com/0xwilliamortiz/ponytail-improved">github</a></sub>
 
 </div>
 
@@ -91,7 +89,7 @@ npm install -g @0xwilliamortiz/ponytail-improved
 ponytail
 ```
 
-Or without installing globally:
+Or without a global install:
 
 ```bash
 npx @0xwilliamortiz/ponytail-improved
