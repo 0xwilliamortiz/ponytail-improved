@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 372" width="880" height="372" role="img" aria-label="Same feature two ways. Your agent: three files, fifty lines, one dependency, one open thread about timezones. Ponytail: one line, the native input type=date.">
+<g font-family="ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace">
+<rect x="0.5" y="0.5" width="879" height="371" rx="10" fill="#0d1117" stroke="#3d444d"/>
+<path d="M0.5 10.5a10 10 0 0 1 10-10h859a10 10 0 0 1 10 10V52H0.5Z" fill="#151b23"/>
+<line x1="0.5" y1="52" x2="879.5" y2="52" stroke="#3d444d"/>
+<line x1="524" y1="0.5" x2="524" y2="371.5" stroke="#3d444d"/>
+<text x="28" y="33" font-size="13" letter-spacing="0.6" fill="#656c76"><tspan font-size="15">&#8722;</tspan>  your agent</text>
+<text x="552" y="33" font-size="13" letter-spacing="0.6" fill="#d4a72c"><tspan font-size="15">+</tspan>  ponytail</text>
+<rect x="20" y="70" width="2" height="272" fill="#22272e"/>
+<text x="40" y="84" font-size="13" fill="#848d97" opacity="1.0">npm i flatpickr</text>
+<text x="40" y="122" font-size="13" fill="#848d97" opacity="1.0">import flatpickr from &quot;flatpickr&quot;;</text>
+<text x="40" y="141" font-size="13" fill="#848d97" opacity="1.0">import &quot;flatpickr/dist/flatpickr.min.css&quot;;</text>
+<text x="40" y="160" font-size="13" fill="#848d97" opacity="1.0">import &quot;./date-picker.css&quot;;</text>
+<text x="40" y="198" font-size="13" fill="#848d97" opacity="1.0">export function DatePicker({ value, onChange, tz }) {</text>
+<text x="40" y="217" font-size="13" fill="#848d97" opacity="1.0">  const ref = useRef(null);</text>
+<text x="40" y="236" font-size="13" fill="#848d97" opacity="1.0">  useEffect(() =&gt; {</text>
+<text x="40" y="255" font-size="13" fill="#848d97" opacity="1.0">    const fp = flatpickr(ref.current, {</text>
+<text x="40" y="274" font-size="13" fill="#848d97" opacity="1.0">      dateFormat: &quot;Y-m-d&quot;,</text>
+<text x="40" y="293" font-size="13" fill="#848d97" opacity="0.45">      onChange: ([d]) =&gt; onChange(toUTC(d, tz)),</text>
+<text x="40" y="312" font-size="13" fill="#848d97" opacity="0.24">      // TODO: does the server want UTC or local?</text>
+<text x="40" y="333" font-size="13" fill="#848d97" opacity="0.3">&#8942;</text>
+<rect x="544" y="150" width="2" height="52" fill="#d4a72c" opacity="0.55"/>
+<text x="564" y="172" font-size="15.5" fill="#d4a72c">&lt;input type=&quot;date&quot;&gt;</text>
+<text x="564" y="195" font-size="12.5" fill="#656c76">the browser already has one</text>
+<line x1="0.5" y1="320" x2="879.5" y2="320" stroke="#3d444d"/>
+<text x="28" y="342" font-size="12" letter-spacing="0.3" fill="#9198a1">3 files &#183; 50 lines &#183; 1 dependency &#183; 1 thread about timezones</text>
+<text x="552" y="342" font-size="12" letter-spacing="0.3" fill="#d4a72c">1 line &#183; nothing to maintain</text>
+</g></svg>
